@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongojs = require('mongojs');
+var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin']);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -7,7 +9,10 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/', function(req,res){
-	res.send('Le test fonctionne');
+	db.magasin.find(function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	});
 });
 
 app.listen(PORT,function(){
