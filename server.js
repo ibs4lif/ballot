@@ -15,6 +15,13 @@ app.get('/', function(req,res){
 	});
 });
 
+app.get('/employe', function(req,res){
+	db.employe.find(function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	});
+});
+
 app.listen(PORT,function(){
 	console.log('App running on port '+ PORT);
 });
