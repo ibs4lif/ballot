@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
-var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin']);
+var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe']);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
