@@ -30,9 +30,9 @@ app.get('/facture', function(req,res){
 });
 
 app.get('/phone', function(req,res){
-	db.facture.find(function(err,docs){
+	db.magasin.find(function(err,docs){
 		console.log(docs);
-		res.json(docs);
+		res.json(docs.telephone);
 	});
 });
 
