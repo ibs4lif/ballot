@@ -29,6 +29,13 @@ app.get('/facture', function(req,res){
 	});
 });
 
+app.get('/phone', function(req,res){
+	db.facture.find(function(err,docs){
+		console.log(docs);
+		res.json(docs.telephone);
+	});
+});
+
 app.listen(PORT,function(){
 	console.log('App running on port '+ PORT);
 });
