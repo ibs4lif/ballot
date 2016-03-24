@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
-var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture']);
+var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents']);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -9,15 +9,16 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/', function(req,res){
-//	db.magasin.find(function(err,docs){
-//		console.log(docs);
-//		res.json(docs);
-//	});
+	var data = [];
 	db.magasin.find(function(err,docs){
 		console.log(docs);
-	//	res.json(docs);
+		data.push(JSON.parse(docs));
 	});
-	res.json(12);
+	db.documents.find(function(err,docs){
+		console.log(docs);
+		data.push(JSON.parse(docs));
+	});
+	res.json(JSON.stringify(data));
 });
 
 app.get('/employe', function(req,res){
