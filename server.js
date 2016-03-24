@@ -13,10 +13,6 @@ app.get('/', function(req,res){
 		console.log(docs);
 		res.json(docs);
 	});
-	db.employe.find(function(err,doc){
-		console.log(docs);
-		res.json(docs);
-	});
 });
 
 app.get('/employe', function(req,res){
