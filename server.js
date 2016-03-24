@@ -9,9 +9,13 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/', function(req,res){
-	db.magasin.find(function(err,doc){
+	db.magasin.find(function(err,docs){
 		console.log(docs);
 		res.json(docs);
+	});
+	db.magasin.find(function(err,doc){
+		console.log(doc);
+		res.json(doc);
 	});
 });
 
