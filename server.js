@@ -12,11 +12,12 @@ app.get('/', function(req,res){
 	var data = [1,2,{test:1}];
 	db.magasin.find(function(err,docs){
 		console.log(docs);
-		return data.push(JSON.parse(docs));
+		data.push(JSON.parse(docs));
+		data.push(2);
 	});
 	db.documents.find(function(err,docs){
 		console.log(docs);
-		return data.push(JSON.parse(docs));
+		data.push(JSON.parse(docs));
 	});
 	res.json(JSON.stringify(data));
 });
