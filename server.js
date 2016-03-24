@@ -9,11 +9,11 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/', function(req,res){
-	db.magasin.find(function(err,docs){
+	db.magasin.find(function(err,doc){
 		console.log(docs);
 		res.json(docs);
 	});
-	db.employe.find(function(err,docs){
+	db.employe.find(function(err,doc){
 		console.log(docs);
 		res.json(docs);
 	});
