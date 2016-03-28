@@ -2,11 +2,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
 var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents']);
+var cors = require('cors');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', function(req,res){
 	db.magasin.find(function(err,docs){
