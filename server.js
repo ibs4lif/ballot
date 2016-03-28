@@ -14,6 +14,20 @@ app.get('/', function(req,res){
 		res.json(docs);
 	});
 });
+app.get('/facture', function (req, res) {
+    db.facture.find(function (err, docs) {
+        console.log(docs);
+        res.json(docs);
+    });
+
+});
+
+app.post('/facture/', function (req,res) {
+    console.log(req.body);
+    db.facture.insert(req.body, function (err, doc) {
+        res.json(doc);
+    });
+});
 
 app.get('/employe', function(req,res){
 	db.employe.find(function(err,docs){
