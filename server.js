@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
-var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents']);
+var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents','equipement']);
 var cors = require('cors');
 
 var app = express();
@@ -16,6 +16,23 @@ app.get('/', function(req,res){
 		res.json(docs);
 	});
 });
+//------------------------------------------------------------------
+//EQUIPEMENT
+//------------------------------------------------------------------
+app.get('/equipement', function (req, res) {
+    db.equipement.find(function (err, docs) {
+        console.log(docs);
+        res.json(docs);
+    });
+
+});
+app.post('/equipement/', function (req,res) {
+    console.log(req.body);
+    db.equipement.insert(req.body, function (err, doc) {
+        res.json(doc);
+    });
+});
+
 app.get('/facture', function (req, res) {
     db.facture.find(function (err, docs) {
         console.log(docs);
