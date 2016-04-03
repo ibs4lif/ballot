@@ -26,6 +26,13 @@ app.get('/equipement', function (req, res) {
     });
 
 });
+app.get('/reservation', function (req, res) {
+    db.reservation.find(function (err, docs) {
+        console.log(docs);
+        res.json(docs);
+    });
+
+});
 app.post('/equipement/', function (req,res) {
     console.log(req.body);
     db.equipement.insert(req.body, function (err, doc) {
