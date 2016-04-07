@@ -1,14 +1,19 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongojs = require('mongojs');
-var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents','equipement','reservation']);
+// var mongojs = require('mongojs');
+var mongoose = require('mongoose');
+// var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents','equipement','reservation']);
 var cors = require('cors');
+var facture = require('../models/facture');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
+
+var db = 'mongodb://ibrahima:sarr@ds011168.mlab.com:11168/ballot';
+mongoose.connect(db);
 
 app.get('/', function(req,res){
 	db.magasin.find(function(err,docs){
@@ -50,17 +55,36 @@ app.post('/reservation/', function (req,res) {
 //------------------------------------------------------------------
 
 app.get('/facture', function (req, res) {
-    db.facture.find(function (err, docs) {
-        console.log(docs);
-        res.json(docs);
-    });
+    //db.facture.find(function (err, docs) {
+    //    console.log(docs);
+    //    res.json(docs);
+    //});
+    facture.find({}).exec(function(err,docs){
+        if (err) {
+            res.send('Une erreur s\'est produite');
+        }else{
+            res.json(docs);
+            console.log(docs);
+        }
+    });    
 
 });
 
 app.post('/facture/', function (req,res) {
     console.log(req.body);
-    db.facture.insert(req.body, function (err, doc) {
-        res.json(doc);
+    //db.facture.insert(req.body, function (err, doc) {
+    //    res.json(doc);
+    //});
+    newFacture = facture();
+    newFacture.items = req.body.items;
+
+    newFacture.save(function(err,docs){
+        if (err) {
+            res.send('Une erreur s\'est produite');
+        }else{
+            res.json(docs);
+            console.log(docs);            
+        }
     });
 });
 
