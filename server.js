@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents','equipement','reservation']);
 var cors = require('cors');
-var facture = require('../models/facture');
+var facture = require('../models/facture.js');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
