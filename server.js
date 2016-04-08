@@ -1,8 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// var mongojs = require('mongojs');
+ var mongojs = require('mongojs');
 var mongoose = require('mongoose');
-// var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents','equipement','reservation']);
+ var db = mongojs('ibrahima:sarr@ds011168.mlab.com:11168/ballot', ['magasin','employe','facture','documents','equipement','reservation']);
 var cors = require('cors');
 var facture = require('./models/facture.js');
 
@@ -12,8 +12,8 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-var db = 'mongodb://ibrahima:sarr@ds011168.mlab.com:11168/ballot';
-mongoose.connect(db);
+var dbse = 'mongodb://ibrahima:sarr@ds011168.mlab.com:11168/ballot';
+mongoose.connect(dbse);
 
 app.get('/', function(req,res){
 	db.magasin.find(function(err,docs){
