@@ -76,7 +76,12 @@ app.post('/facture/',cors(),function (req,res) {
     //    res.json(doc);
     //});
     newFacture = facture();
+    newFacture.remorque = req.body.remorque;
+    newFacture.route = req.body.route;
+    newFacture.porte = req.body.porte;
+    newFacture.reference = req.body.reference;
     newFacture.items = req.body.items;
+    newFacture.date = req.body.date;
 
     newFacture.save(function(err,docs){
         if (err) {
